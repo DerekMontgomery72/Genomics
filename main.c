@@ -1,8 +1,8 @@
 #include "project.h"
 
 
-char *TestString1 = "acatgctacacgtactccgataccccgtaaccgataacgatacacagacctcgtacgcttgctacaacgtactctataaccgagaacgattgacatgcctcgtacacatgctacacgtactccgatgaccccgt";
-char *TestString2 = "acattctacgaacctctcgataaccccataaccgataacgattgacacctcgtacgctttctacaacttactctctcgataaccccataaccgataacgattgacacctcgtacacatggtacatacgtactctcgataccccgt";
+char *TestString1 = "ACATGCTACACGTATCCGATACCCCGTAACCGATAACGATACACAGACCTCGTACGCTTGTACAACGTACTCTATAACCGAGAACGATTGACATGCCTCGTACACATGCTACACGTACTCCGAT";
+char *TestString2 = "ACATGCGACACTACTCCGATACCCCGTAACCGATAACGATACAGAGACCTCGTACGCTTGCTAATAACCGAGAACGATTGACATTCCTCGTACAGCTACACGTACTCCGAT";
 
 int main(int argc, char **argv)
 {
