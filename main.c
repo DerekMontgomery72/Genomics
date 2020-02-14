@@ -42,10 +42,10 @@ int globalAlign(char *string1, char *string2)
     //Initialize Table Column 0 scores
     for(j = 0; j < columns; j++)
     {
-        table[j][0].score = 0;
-        table[j][0].insertion = 0;
-        table[j][0].deletion = 0;
-        table[j][0].substitution = 0;
+        table[0][j].score = 0;
+        table[0][j].insertion = 0;
+        table[0][j].deletion = 0;
+        table[0][j].substitution = 0;
     }
 
     for(i = 1; i < rows; i++)
