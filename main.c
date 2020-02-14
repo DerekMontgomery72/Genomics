@@ -12,7 +12,7 @@ int main(int argc, char **argv)
     gapOpen = -5;
 
     printf("Run Global Align\n");
-    globalAlign(TestString1, TestString1);
+    globalAlign(TestString1, TestString2);
 }
 
 int globalAlign(char *string1, char *string2)
