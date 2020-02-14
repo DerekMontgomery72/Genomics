@@ -51,7 +51,7 @@ int globalAlign(char *string1, char *string2)
     {
         for(j = 1; j < columns; j++){
             tempInsert = maxInsertion(table, i, j);
-            tempSub = maxSubstitution(table, i, j, string1[i], string2[j]);
+            tempSub = maxSubstitution(table, i, j, string1[i-1], string2[j-1]);
             tempDel = maxDeletion(table, i, j);
             table[i][j].insertion = tempInsert;
             table[i][j].deletion = tempDel;
