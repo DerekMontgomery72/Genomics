@@ -231,9 +231,9 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
         }
         else
         {
-            if(OptScore == maxInsertion(table, i,j)) // was insertion
+            if(OptScore == table[i][j].insertion) // was insertion
             {
-                if((OptScore - gapCont) == table[i-1][j].score)
+                if((OptScore - gapCont) == table[i-1][j].insertion)
                 {
                     gaps = gaps + 1;
                     OptScore = table[i-1][j].score;
@@ -241,7 +241,7 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
                     i = i-1;
                     continue;
                 }
-                else if((OptScore - (gapOpen + gapCont) == table[i-1][j].score))
+                else if((OptScore - (gapOpen + gapCont) == table[i-1][j].substitution) || ((OptScore -(gapOpen + gapCont) == table[i-1][j].deletion)))
                 {
                     gapsStart = gapsStart + 1;
                     gaps = gaps + 1;
@@ -252,16 +252,16 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
                 }
 
             }
-            if(OptScore == maxDeletion(table,i,j))
+            if(OptScore == table[i][j].deletion)
             {
-                if((OptScore - gapCont) == table[i][j-1].score)
+                if((OptScore - gapCont) == table[i][j-1].deletion)
                 {
                     gaps = gaps +1;
                     OptScore = table[i][j-1].score;
                     j = j-1;
                     continue;
                 }
-                else if(OptScore - (gapOpen + gapCont) == table[i][j-1].score)
+                else if((OptScore - (gapOpen + gapCont) == table[i][j-1].substitution) || ((OptScore -(gapOpen + gapCont)) == table[i][j-1].insertion))
                 {
                     gapsStart = gapsStart + 1;
                     gaps = gaps + 1;
