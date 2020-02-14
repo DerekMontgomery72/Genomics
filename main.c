@@ -83,7 +83,7 @@ int maxInsertion(DPCELL **table, int i, int j)
         return (gapOpen + (j * gapCont));
     }
     else{
-     insertion = table[i][j-1].insertion;
+     insertion = table[i][j-1].insertion + gapCont;
      substitution = table[i][j-1].substitution + gapOpen + gapCont;
      deletion = table[i][j-1].deletion + gapOpen + gapCont;
     return Max(insertion, substitution, deletion);
