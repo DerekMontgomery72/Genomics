@@ -1,14 +1,14 @@
 #include "project.h"
 
 
-char *TestString1 = "ACATGCTACACGTATCCGATACCCCGTAACCGATAACGATACACAGACCTCGTACGCTTGTACAACGTACTCTATAACCGAGAACGATTGACATGCCTCGTACACATGCTACACGTACTCCGAT";
+char *TestString1 = "ACATGCTACACGTATCCGATACCCCGTAACCGATAACGATACACAGACCTCGTACGCTTGCTACAACGTACTCTATAACCGAGAACGATTGACATGCCTCGTACACATGCTACACGTACTCCGAT";
 char *TestString2 = "ACATGCGACACTACTCCGATACCCCGTAACCGATAACGATACAGAGACCTCGTACGCTTGCTAATAACCGAGAACGATTGACATTCCTCGTACAGCTACACGTACTCCGAT";
 
 int main(int argc, char **argv)
 {
     match = 1;
     mismatch = -2;
-    gapCont = -1;
+    gapCont = -2;
     gapOpen = -5;
 
     printf("Run Global Align\n");
@@ -37,7 +37,7 @@ int globalAlign(char *string1, char *string2)
         table[i][0].insertion = 0;
         table[i][0].deletion = 0;
         table[i][0].substitution = 0;
-        printf("[ ");
+        
     }
     //Initialize Table Column 0 scores
     for(j = 0; j < columns; j++)
@@ -87,8 +87,7 @@ int maxInsertion(DPCELL **table, int i, int j)
      substitution = table[i][j-1].substitution + gapOpen + gapCont;
      deletion = table[i][j-1].deletion + gapOpen + gapCont;
     return Max(insertion, substitution, deletion);
-    }
-     
+    } 
 }
 
 int maxDeletion(DPCELL** table, int i, int j)
