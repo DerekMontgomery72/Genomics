@@ -17,6 +17,7 @@ int main(int argc, char **argv)
 
 int globalAlign(char *string1, char *string2)
 {
+    char c;
     int rows = strlen(string1), columns =strlen(string2), i, j;
     int tempInsert = 0, tempDel = 0, tempSub = 0;
     //Allocate Table
@@ -57,7 +58,8 @@ int globalAlign(char *string1, char *string2)
             table[i][j].deletion = tempDel;
             table[i][j].substitution = tempSub;
             table[i][j].score = Max(tempInsert, tempDel, tempSub);
-            printf("sub: %d, del: %d, Insert: %d, Score: %d\n ", tempSub, tempDel, tempInsert, table[i][j].score);
+            printf("[%d][%d]: sub: %d, del: %d, Insert: %d, Score: %d\n ",i,j, tempSub, tempDel, tempInsert, table[i][j].score);
+            getc(c);
         }
         printf("\n");
     }
