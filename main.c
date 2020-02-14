@@ -48,7 +48,7 @@ int globalAlign(char *string1, char *string2)
         table[0][j].substitution = 0;
     }
 
-    for(i = 1; i < rows-1; i++)
+    for(i = 1; i < rows; i++)
     {
         for(j = 1; j < columns; j++){
             tempInsert = maxInsertion(table, i, j);
@@ -236,59 +236,59 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
                 if((OptScore - gapCont) == table[i-1][j].score)
                 {
                     gaps = gaps + 1;
+                    OptScore = table[i-1][j].score;
+                    alignmentTop = insertGap(alignmentTop, i);
+                    i = i-1;
+                    continue;
                 }
                 else if((OptScore - (gapOpen + gapCont) == table[i-1][j].score))
                 {
                     gapsStart = gapsStart + 1;
                     gaps = gaps + 1;
+                    OptScore = table[i-1][j].score;
+                    alignmentTop = insertGap(alignmentTop, i);
+                    i = i-1;
+                    continue;
                 }
-                else
-                {
-                    printf("Error in Insertion Case -- scores not matching up\n");
-                    break;
-                }
-                
-                OptScore = table[i-1][j].score;
-                alignmentTop = insertGap(alignmentTop, i);
-                i = i-1;
+
             }
-            else if(OptScore == maxDeletion(table,i,j))
+            if(OptScore == maxDeletion(table,i,j))
             {
                 if((OptScore - gapCont) == table[i][j-1].score)
                 {
                     gaps = gaps +1;
+                    OptScore = table[i][j-1].score;
+                    j = j-1;
+                    continue;
                 }
                 else if(OptScore - (gapOpen + gapCont) == table[i][j-1].score)
                 {
                     gapsStart = gapsStart + 1;
                     gaps = gaps + 1;
+                    OptScore = table[i][j-1].score;
+                    j = j-1;
+
+                    continue;
 
                 }
-                else
-                {
-                    //error
-                    printf("Scores not continuing properly -- Error in deletions\n");
-                    break;
-                }
-            OptScore = table[i][j-1].score;
+               
             }
-            else if(OptScore == table[i-1][j-1].score + match)
+            if(OptScore == table[i-1][j-1].score + match)
             {
                 OptScore = table[i-1][j-1].score;
                 i = i-1;
                 j = j-1;
                 matches = matches + 1;
+                continue;
             }
-            else if(OptScore == table[i-1][j-1].score + mismatch){
+            if(OptScore == table[i-1][j-1].score + mismatch){
                 OptScore = table[i-1][j-1].score;
                 i = i-1;
                 j = j-1;
                 mismatches = mismatches + 1;
+                continue;
             }
-            else{
-                printf("Error while walking back no surrounding cell scores could reach current score\n");
-                break;
-            }
+            
         
         }
         
