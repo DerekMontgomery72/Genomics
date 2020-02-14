@@ -9,6 +9,8 @@ int main(int argc, char **argv)
     match = 1;
     mismatch = -2;
     gap = -1;
+    printf("Run Global Align\n");
+    globalAlign(TestString1, TestString1);
 }
 
 int globalAlign(char *string1, char *string2)
@@ -45,7 +47,7 @@ int globalAlign(char *string1, char *string2)
         }
     }
 
-    printf("Maximum Global Alignment Score: %d", table[i][j]);
+    printf("Maximum Global Alignment Score: %d\n", table[i][j]);
 
 
 
