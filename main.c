@@ -47,7 +47,7 @@ int globalAlign(char *string1, char *string2)
         }
     }
 
-    printf("Maximum Global Alignment Score: %d\n", table[i][j]);
+    printf("Maximum Global Alignment Score: %d\n", table[i -1][j -1]);
 
 
 
