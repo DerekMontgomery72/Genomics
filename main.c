@@ -171,7 +171,7 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
     char temp = '-';
     char *cp = &temp;
     int i, j;
-    int len = (endI *endJ) * sizeof(char);
+    int len = (endI + endJ) * sizeof(char);
     int matches = 0, mismatches = 0, del = 0, insert = 0, gaps = 0, gapsStart = 0;
     int OptScore = table[endI][endJ].score;
     char *alignmentTop = (char *)malloc(len);
@@ -298,20 +298,23 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
 
     printf("Score: %d, matches: %d, mismatches: %d, gaps: %d, gapStarts: %d ", table[endI][endJ].score,matches, mismatches,gaps,gapsStart);
 
+    printf("%s\n",alignmentTop);
+    printf("%s\n",alignmentBottom);
+    return alignmentBottom;
+
 
 }
 
-char *insertGap(char *str, int index)
+char *insertGap(char *str, int index) // string has memory available allocated in outer function
 {
-    char *strFront = (char*)malloc(sizeof(char) * strlen(str + 1)); //Create string space for front half plus -
     char *strEnd = str + index;
     char *strTemp = (char*)malloc(sizeof(char) * (strlen(str) - index)); //Create string spacce for back portion of string;
     strcpy(strTemp, strEnd);
         
-    strncpy(strFront,str,index);
-    strFront[index] = '-';
+    str[index] = '-';
+    str[index+1] = '\0'; // null terminate after - so strcat can be used
 
-    strncat(strFront,strFront,(index +1));
-    return strFront;
+    strcat(str,strEnd);
+    return str;
 
 }
