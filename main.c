@@ -57,8 +57,7 @@ int globalAlign(char *string1, char *string2)
             table[i][j].deletion = tempDel;
             table[i][j].substitution = tempSub;
             table[i][j].score = Max(tempInsert, tempDel, tempSub);
-            printf("%d ", table[i-1][j-1].score);
-
+            printf("sub: %d, del: %d, Insert: %d, Score: %d\n ", tempSub, tempDel, tempInsert, table[i][j].score);
         }
         printf("\n");
     }
