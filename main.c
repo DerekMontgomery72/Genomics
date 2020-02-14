@@ -21,7 +21,7 @@ int globalAlign(char *string1, char *string2)
     int tempInsert = 0, tempDel = 0, tempSub = 0;
     //Allocate Table
     int len = sizeof(DPCELL *) *rows + sizeof(DPCELL) * columns * rows;
-    DPCELL **table = (int**) malloc(len);
+    DPCELL **table = (DPCELL**) malloc(len);
     DPCELL *ptr = (DPCELL *)(table + rows);
     //Set Row pointers
     for(i = 0; i < rows; i++)
