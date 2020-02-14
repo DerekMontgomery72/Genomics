@@ -13,7 +13,7 @@ int main(int argc, char **argv)
 
 int globalAlign(char *string1, char *string2)
 {
-    int rows = stlen(string1), columns =strlen(string2), i, j;
+    int rows = strlen(string1), columns =strlen(string2), i, j;
     //Allocate Table
     int len = sizeof(int *) *rows + sizeof(int) * columns * rows;
     int **table = (int**) malloc(len);
