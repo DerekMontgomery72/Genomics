@@ -17,6 +17,7 @@ int Max(int s1, int s2, int s3);
 int maxDeletion(DPCELL** table, int i, int j);
 int maxInsertion(DPCELL **table, int i, int j);
 int maxSubstitution(DPCELL **table, int i, int j, char ai, char bj);
+char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2);
 
 
 

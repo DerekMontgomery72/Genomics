@@ -40,7 +40,7 @@ int globalAlign(char *string1, char *string2)
         
     }
     //Initialize Table Column 0 scores
-    for(j = 0; j < columns; j++)
+    for(j = 0; j < columns-1; j++)
     {
         table[0][j].score = 0;
         table[0][j].insertion = 0;
@@ -48,7 +48,7 @@ int globalAlign(char *string1, char *string2)
         table[0][j].substitution = 0;
     }
 
-    for(i = 1; i < rows; i++)
+    for(i = 1; i < rows-1; i++)
     {
         for(j = 1; j < columns; j++){
             tempInsert = maxInsertion(table, i, j);
@@ -64,6 +64,8 @@ int globalAlign(char *string1, char *string2)
     }
 
     printf("Maximum Global Alignment Score: %d\n", table[i -1][j -1].score);
+
+    char *aling = walkBack(table,(i-1),(j-1),string1,string2);
 }
 
 int maxInsertion(DPCELL **table, int i, int j)
@@ -161,4 +163,155 @@ int Max(int s1, int s2, int s3){
         max = s3;
     }
     return max;
+}
+
+char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2)
+{
+    //Maximum Length of Alignment = I*J
+    char temp = '-';
+    char *cp = &temp;
+    int i, j;
+    int len = (endI *endJ) * sizeof(char);
+    int matches = 0, mismatches = 0, del = 0, insert = 0, gaps = 0, gapsStart = 0;
+    int OptScore = table[endI][endJ].score;
+    char *alignmentTop = (char *)malloc(len);
+    char *alignmentBottom = (char*)malloc(len);
+    strcpy(alignmentTop,string1);
+    strcpy(alignmentBottom,string2);
+
+    i = endI;
+    j = endJ;
+    while(i > 0 && j > 0)
+    {
+        if( i == 0 || j == 0){
+            if(i == 0) //At the edge of the columns -- can only do deletion until end
+            {
+                if(table[i][j-1].score == (OptScore - gapCont)) //check Deletion Continuing gap
+                {
+                    gaps = gaps + 1;
+                    OptScore = OptScore - gapCont;
+                    //Insert gap into bottom string
+                }
+                else if(table[i][j-1].score == (OptScore - (gapCont + gapOpen)))
+                {
+                    gaps = gaps +1;
+                    gapsStart = gapsStart + 1;
+
+                }
+                else{
+                    //Error
+                    printf("Error Scores on table don't match possible movements\n"); 
+                    break;
+                }
+                alignmentBottom = insertGap(alignmentBottom,j);
+                j = j-1;
+            }
+            if(j == 0)//At top row -- can only to insertion until end
+            {
+                if(table[i-1][j].score == (OptScore - gapCont)) //check insertion Continuing gap
+                {
+                    gaps = gaps + 1;
+                    OptScore = OptScore - gapCont;
+                    //Insert gap into bottom string
+                }
+                else if(table[i-1][j].score == (OptScore - (gapCont + gapOpen)))
+                {
+                    gaps = gaps +1;
+                    gapsStart = gapsStart + 1;
+
+                }
+                else{
+                    //Error
+                    printf("Error Scores not matching possible values\n");
+                    break;
+                }
+                alignmentTop = insertGap(alignmentTop, i);
+                i = i-1;
+            }
+        }
+        else
+        {
+            if(OptScore == maxInsertion(table, i,j)) // was insertion
+            {
+                if((OptScore - gapCont) == table[i-1][j].score)
+                {
+                    gaps = gaps + 1;
+                }
+                else if((OptScore - (gapOpen + gapCont) == table[i-1][j].score))
+                {
+                    gapsStart = gapsStart + 1;
+                    gaps = gaps + 1;
+                }
+                else
+                {
+                    printf("Error in Insertion Case -- scores not matching up\n");
+                    break;
+                }
+                
+                OptScore = table[i-1][j].score;
+                alignmentTop = insertGap(alignmentTop, i);
+                i = i-1;
+            }
+            else if(OptScore == maxDeletion(table,i,j))
+            {
+                if((OptScore - gapCont) == table[i][j-1].score)
+                {
+                    gaps = gaps +1;
+                }
+                else if(OptScore - (gapOpen + gapCont) == table[i][j-1].score)
+                {
+                    gapsStart = gapsStart + 1;
+                    gaps = gaps + 1;
+
+                }
+                else
+                {
+                    //error
+                    printf("Scores not continuing properly -- Error in deletions\n");
+                    break;
+                }
+            OptScore = table[i][j-1].score;
+            }
+            else if(OptScore == table[i-1][j-1].score + match)
+            {
+                OptScore = table[i-1][j-1].score;
+                i = i-1;
+                j = j-1;
+                matches = matches + 1;
+            }
+            else if(OptScore == table[i-1][j-1].score + mismatch){
+                OptScore = table[i-1][j-1].score;
+                i = i-1;
+                j = j-1;
+                mismatches = mismatches + 1;
+            }
+            else{
+                printf("Error while walking back no surrounding cell scores could reach current score\n");
+                break;
+            }
+        
+        }
+        
+        
+
+    } //end WHile loop
+
+    printf("Score: %d, matches: %d, mismatches: %d, gaps: %d, gapStarts: %d ", table[endI][endJ].score,matches, mismatches,gaps,gapsStart);
+
+
+}
+
+char *insertGap(char *str, int index)
+{
+    char *strFront = (char*)malloc(sizeof(char) * strlen(str + 1)); //Create string space for front half plus -
+    char *strEnd = str + index;
+    char *strTemp = (char*)malloc(sizeof(char) * (strlen(str) - index)); //Create string spacce for back portion of string;
+    strcpy(strTemp, strEnd);
+        
+    strncpy(strFront,str,index);
+    strFront[index] = '-';
+
+    strncat(strFront,strFront,(index +1));
+    return strFront;
+
 }
