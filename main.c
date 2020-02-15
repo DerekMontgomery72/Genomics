@@ -306,7 +306,7 @@ char *insertGap(char *str, int index) // string has memory available allocated i
 {
     char insert = '-'; // character to be inserted
     int sourceLen = strlen(str);
-    char *strEndBuf = (char *)mall(sizeof(char) * (sourceLen - index));// buffer to hold end of string
+    char *strEndBuf = (char *)malloc(sizeof(char) * (sourceLen - index));// buffer to hold end of string
     char *dest = str + index;
     char *buf = (char *)malloc(sizeof(char) *strlen(str)); // buffer to hold built string
     strcpy(strEndBuf,dest);
