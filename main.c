@@ -1,9 +1,14 @@
 #include "project.h"
 
+/*
+    Derek Montgomery
+    Computational Genomics Programming project 1
 
-char *TestString1 = "ACATGCTACACGTATCCGATACCCCGTAACCGATAACGATACACAGACCTCGTACGCTTGCTACAACGTACTCTATAACCGAGAACGATTGACATGCCTCGTACACATGCTACACGTACTCCGAT";
-char *TestString2 = "ACATGCGACACTACTCCGATACCCCGTAACCGATAACGATACAGAGACCTCGTACGCTTGCTAATAACCGAGAACGATTGACATTCCTCGTACAGCTACACGTACTCCGAT";
+    Note: some issues unresolved at time of assignment submission due
+    to deadline. This includes local alignment issue of str2 being changed
+    after running global align.
 
+*/
 int main(int argc, char **argv)
 {
 
@@ -47,6 +52,7 @@ int main(int argc, char **argv)
     printf("Local\n");
     strcpy(s1Temp, str1);
     strcpy(s2Temp, str2);
+    printf("%s\n", s2Temp);
     localAlign(s1Temp, s2Temp);
     printf("End\n");
     return 0;
