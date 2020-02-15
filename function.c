@@ -47,14 +47,12 @@ int localAlign(char *string1, char *string2)
             table[i][j].deletion = tempDel;
             table[i][j].substitution = tempSub;
             table[i][j].score = MaxLocal(tempInsert, tempDel, tempSub);
-            printf("[%d][%d] Score: %d\t",i, j, table[i][j].score);
             if(table[i][j].score > maxCell->score){
                 maxCell = &table[i][j];
                 maxI = i;
                 maxJ = j;
             }
         }
-        printf("\n");
     }
     printf("MaxScore: %d\n", maxCell->score);
     char *align = walkBack(table,(maxI),(maxJ),string1,string2);
@@ -225,6 +223,8 @@ int MaxLocal(int s1, int s2, int s3)
 char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2)
 {
     //Maximum Length of Alignment = I*J
+    int str1Len = strlen(string1), str2Len = strlen(string2);
+    
     char temp = '-';
     char *cp = &temp;
     int i, j, bottomGapLen = 0, topGapLen = 0;
@@ -235,7 +235,8 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
     char *alignmentBottom = (char*)malloc(len);
     strcpy(alignmentTop,string1);
     strcpy(alignmentBottom,string2);
-
+    printf("Sequence 1 = %s, length\n", s1Name, str1Len);
+    printf("Sequence 2: %s, length %d\n",s2Name, str2Len);
     i = endI;
     j = endJ;
     while(i > 0 && j > 0 && OptScore != 0)
@@ -360,8 +361,13 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
         
         } 
     } //end WHile loop
+    int endLen = strlen(alignmentTop);
 
-    printf("Score: %d, matches: %d, mismatches: %d, gaps: %d, gapStarts: %d\n", table[endI][endJ].score,matches, mismatches,gaps,gapsStart);
+    double Identities = 0.0, gaps = 0.0;
+    Identities = (matches / endLen) * 100;
+    gaps = (gaps / endLen) * 100;
+    printf("Optimal Score: %d, matches: %d, mismatches: %d, gaps: %d, gapStarts: %d\n", table[endI][endJ].score,matches, mismatches,gaps,gapsStart);
+
 
     printf("%s\n",alignmentTop);
     printf("%s\n",alignmentBottom);
@@ -389,4 +395,71 @@ char *insertGap(char *str, int index, int gapLen) // string has memory available
     strcpy(str, buf);
     return str;
 
+}
+
+int fileProcess(FILE *fp, size_t size)
+{
+    char *s1, *s2, *s1Name, *s2Name, *file,
+         buf[1024], s1Read = 0, s1Size = 1024, s2Size = 1024 ;
+    char *cp, *temp;
+    int ch;
+    s1 = (char *)malloc(sizeof(char) *1024); // give initial input of size 1024
+    s2 = (char *)malloc(sizeof(char) *1024);
+    strcpy(s1,""); // set Empty string for s1 and s2
+    strcpy(s2,""); 
+
+    size_t len = 0;
+    file = realloc(NULL, sizeof(char) *size); //Allocate enough memory to hold flie
+    while(fgets(buf, 1024, fp) != NULL){
+        if(buf[0] == '>'){
+            //Name
+            cp = buf + 1;
+            if(strcmp(s1Name,"") == 0){
+                strcpy(s1Name,cp);
+            }
+            else{
+                strcpy(s2Name, cp);
+            }
+        }
+        if(strcmp(buf,"\n") == 0)
+        {
+            s1Read = 1; //Set s1 as already been read
+            continue;
+        }
+        else
+        {
+            if(s1Read == 0){
+                if(strlen(s1) + strlen(buf) > s1Size)
+                {
+                    temp = realloc(s1, (strlen(s1) + strlen(buf))); //allocate more space for s1
+                    s1Size = strlen(s1) + strlen(buf);
+                    if(!temp){
+                        free(s1);
+                        s1 = NULL;
+                        break;
+                    }
+                    s1 = temp;
+                }
+                strcat(s1,buf);
+            }
+            else{
+                if(strlen(s2) + strlen(buf) > s2Size){
+                    s2Size = strlen(s2) + strlen(buf);
+                    temp = realloc(s2, (strlen(s2) + strlen(buf)));
+                    if(!temp){
+                        free(s2);
+                        s1 = NULL;
+                        break;
+                    }
+                    s2 = temp;
+                }
+                strcat(s2,buf);
+            }
+        }
+
+    }
+    str1 = s1;
+    str2 = s2;
+    return 0;
+    
 }
