@@ -47,9 +47,13 @@ int localAlign(char *string1, char *string2)
             table[i][j].deletion = tempDel;
             table[i][j].substitution = tempSub;
             table[i][j].score = MaxLocal(tempInsert, tempDel, tempSub);
+            
         
                 if(table[i][j].score == 0)
                 {
+                    table[i][j].insertion = 0;
+                    table[i][j].deletion = 0;
+                    table[i][j].substitution = 0;
                     if(table[i][j-1].score > maxCell->score)
                     {
                         maxCell = &table[i][j-1];
