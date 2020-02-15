@@ -47,7 +47,8 @@ int localAlign(char *string1, char *string2)
             table[i][j].deletion = tempDel;
             table[i][j].substitution = tempSub;
             table[i][j].score = MaxLocal(tempInsert, tempDel, tempSub);
-            if(table[i][j].score > maxCell->score){
+            if(table[i][j].score > maxCell->score)
+            {
                 maxCell = &table[i][j];
                 maxI = i;
                 maxJ = j;
@@ -364,8 +365,8 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
     int endLen = strlen(alignmentTop);
 
     double Identities = 0.0, gapRatio = 0.0;
-    Identities = (matches / endLen) * 100;
-    gapRatio = (gapRatio / endLen) * 100;
+    Identities = ((double)matches / (double)endLen) * 100;
+    gapRatio = ((double)gapRatio / (double)endLen) * 100;
     printf("Optimal Score: %d, matches: %d, mismatches: %d, gaps: %d, gapStarts: %d\n", table[endI][endJ].score,matches, mismatches,gaps,gapsStart);
     printf("Match Ratio:(%d/%d) %f%%, Gap Ratio (%d/%d) %f%%\n",gaps, endLen,Identities,gaps, endLen, gapRatio);
 
@@ -409,8 +410,8 @@ int fileProcess(FILE *fp, int size)
     size_t len = 0;
     file = realloc(NULL, sizeof(char) *size); //Allocate enough memory to hold flie
     while(fgets(buf, 1024, fp) != NULL){
-        printf("buf %s\n",buf);
         if(buf[0] == '>'){
+            buf[strlen(buf) -2] = '\0';
             //Name
             cp = buf + 1;
             if(strcmp(s1Name,"") == 0){

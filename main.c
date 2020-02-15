@@ -37,11 +37,16 @@ int main(int argc, char **argv)
 
     fileProcess(in, res);
 
-
+    char *s1Temp = (char *)malloc(strlen(str1) * sizeof(char));
+    char *s2Temp = (char *)malloc(strlen(str2) * sizeof(char));
+    strcpy(s1Temp, str1);
+    strcpy(s2Temp, str2);
     printf("Scores: \t match: %d, mismatch: %d, h: %d, g: %d \n", match, mismatch, gapOpen, gapCont);
     printf("Global\n");
-    globalAlign(str1, str2);
+    globalAlign(s1Temp, s2Temp);
     printf("Local\n");
+    strcpy(s1Temp, str1);
+    strcpy(s2Temp, str2);
     localAlign(str1, str2);
     printf("End\n");
     return 0;
