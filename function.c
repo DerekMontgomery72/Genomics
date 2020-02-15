@@ -399,8 +399,7 @@ char *insertGap(char *str, int index, int gapLen) // string has memory available
 
 int fileProcess(FILE *fp, size_t size)
 {
-    char *s1, *s2, *s1Name, *s2Name, *file,
-         buf[1024];
+    char *s1, *s2, *s1Name, *s2Name, *file, buf[1024];
     char *cp, *temp;
     int ch, s1Size = 1024, s2Size = 1024, s1Read = 0;
     s1 = (char *)malloc(sizeof(char) *1024); // give initial input of size 1024

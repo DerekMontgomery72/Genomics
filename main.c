@@ -20,12 +20,12 @@ int main(int argc, char **argv)
     }
     // Get file size
     fseek(in,0L,SEEK_END);
-    long int res = ftell(in);
+    int res = ftell(in);
     printf("Input file size in bytes %ld\n", res);
     fclose(in);
 
     in = fopen(argv[1], "r");
-    fileProcess(in, (size_t)res);
+    fileProcess(in, res);
 
     strcpy(s1Name, "");
     strcpy(s2Name, ""); // Default Names
