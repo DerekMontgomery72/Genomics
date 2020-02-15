@@ -226,7 +226,7 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
                     printf("Error Scores not matching possible values\n");
                     break;
                 }
-                alignmentTop = insertGap(alignmentTop, i);
+                alignmentTop = insertGap(alignmentTop, i, topGapLen);
                 topGapLen = 0;
                 i = i-1;
             }
