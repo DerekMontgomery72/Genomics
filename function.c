@@ -47,7 +47,7 @@ int localAlign(char *string1, char *string2)
             table[i][j].deletion = tempDel;
             table[i][j].substitution = tempSub;
             table[i][j].score = MaxLocal(tempInsert, tempDel, tempSub);
-            printf("[%d][%d] Score: %d", table[i][j].score);
+            printf("[%d][%d] Score: %d\t",i, j, table[i][j].score);
         
                 if(table[i][j].score == 0)
                 {
@@ -70,10 +70,11 @@ int localAlign(char *string1, char *string2)
                         maxI = i-1;
                         maxJ = j-1;
                     }
-            }
+                }
             
 
         }
+        printf("\n");
     }
     printf("MaxScore: %d\n", maxCell->score);
     char *align = walkBack(table,(maxI),(maxJ),string1,string2);
