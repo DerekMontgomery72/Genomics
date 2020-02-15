@@ -396,10 +396,10 @@ char *insertGap(char *str, int index, int gapLen) // string has memory available
     return str;
 
 }
-
+ 
 int fileProcess(FILE *fp, int size)
 {
-    char *s1, *s2, *s1Name, *s2Name, *file, buf[1024];
+    char *s1, *s2, *file, buf[1024];
     char *cp, *temp;
     int ch, s1Size = 1024, s2Size = 1024, s1Read = 0;
     s1 = (char *)malloc(sizeof(char) *1024); // give initial input of size 1024
@@ -420,7 +420,7 @@ int fileProcess(FILE *fp, int size)
                 strcpy(s2Name, cp);
             }
         }
-        if(strcmp(buf,"\n") == 0)
+        else if(strcmp(buf,"\n") == 0)
         {
             s1Read = 1; //Set s1 as already been read
             continue;

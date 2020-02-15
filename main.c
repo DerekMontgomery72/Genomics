@@ -6,10 +6,19 @@ char *TestString2 = "ACATGCGACACTACTCCGATACCCCGTAACCGATAACGATACAGAGACCTCGTACGCTT
 
 int main(int argc, char **argv)
 {
+
+    match = 1;
+    mismatch = -2;
+    gapCont = -2;
+    gapOpen = -5;
+
+    strcpy(s1Name, "");
+    strcpy(s2Name, ""); // Default Names
+    
     printf("FILE: %s\n", argv[1]);
     if(argc == 1){
         printf("No file Given\n");
-        return;
+        return 0;
     }
 
     FILE *in;
@@ -25,15 +34,12 @@ int main(int argc, char **argv)
     printf("Input file size in bytes %d\n", res);
     fseek(in,0,SEEK_SET);
 
+
     fileProcess(in, res);
 
-    strcpy(s1Name, "");
-    strcpy(s2Name, ""); // Default Names
 
-    match = 1;
-    mismatch = -2;
-    gapCont = -2;
-    gapOpen = -5;
+
+ 
     printf("Scores: \t match: %d, mismatch: %d, h: %d, g: %d \n", match, mismatch, gapOpen, gapCont);
     printf("Global\n");
     globalAlign(str1, str2);
