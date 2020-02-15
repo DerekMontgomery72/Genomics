@@ -233,41 +233,42 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
         {
             if(OptScore == table[i][j].insertion) // was insertion
             {
-                if((OptScore - gapCont) == table[i-1][j].insertion)
+                if((OptScore - gapCont) == table[i][j-1].insertion)
                 {
                     gaps = gaps + 1;
-                    OptScore = table[i-1][j].score;
+                    OptScore = table[i][j-1].score;
                     alignmentTop = insertGap(alignmentTop, i);
                     i = i-1;
                     continue;
                 }
-                else if((OptScore - (gapOpen + gapCont) == table[i-1][j].substitution) || ((OptScore -(gapOpen + gapCont) == table[i-1][j].deletion)))
+                else if((OptScore - (gapOpen + gapCont) == table[i][j-1].substitution) || ((OptScore -(gapOpen + gapCont) == table[i][j-1].deletion)))
                 {
                     gapsStart = gapsStart + 1;
                     gaps = gaps + 1;
-                    OptScore = table[i-1][j].score;
+                    OptScore = table[i][j-1].score;
                     alignmentTop = insertGap(alignmentTop, i);
-                    i = i-1;
+                    j = j-1;
                     continue;
                 }
 
             }
-            if(OptScore == table[i][j].deletion)
+            if(OptScore == table[i][j].deletion) //deletion
             {
-                if((OptScore - gapCont) == table[i][j-1].deletion)
+                if((OptScore - gapCont) == table[i-1][j].deletion)
                 {
-                    gaps = gaps +1;
-                    OptScore = table[i][j-1].score;
-                    j = j-1;
+                    gaps = gaps + 1;
+                    OptScore = table[i-1][j].score;
+                    i = i-1;
+                    alignmentBottom = insertGap(alignmentBottom, i);
                     continue;
                 }
-                else if((OptScore - (gapOpen + gapCont) == table[i][j-1].substitution) || ((OptScore -(gapOpen + gapCont)) == table[i][j-1].insertion))
+                else if((OptScore - (gapOpen + gapCont) == table[i-1][j].substitution) || ((OptScore -(gapOpen + gapCont)) == table[i -1][j].insertion))
                 {
                     gapsStart = gapsStart + 1;
                     gaps = gaps + 1;
-                    OptScore = table[i][j-1].score;
-                    j = j-1;
-
+                    OptScore = table[i-1][j].score;
+                    i = i-1;
+                    alignmentBottom = insertGap(alignmentBottom, i);
                     continue;
 
                 }
