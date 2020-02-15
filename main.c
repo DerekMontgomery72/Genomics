@@ -311,8 +311,8 @@ char *insertGap(char *str, int index) // string has memory available allocated i
     char *buf = (char *)malloc(sizeof(char) *strlen(str)); // buffer to hold built string
     strcpy(strEndBuf,dest);
     strncpy(buf,str,index); // move first part of string to buf
-    buf[index] = '-';// insert '-', now not null terminated string
-    buf[index + 1] = '\0';
+    buf[index -1] = '-';// insert '-', now not null terminated string
+    buf[index] = '\0';
     printf("buf front: %s\n buf end: %s\n",buf, strEndBuf);
     strcat(buf, strEndBuf);
 
