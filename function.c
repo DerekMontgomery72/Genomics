@@ -35,6 +35,7 @@ int localAlign(char *string1, char *string2)
         table[0][j].deletion = 0;
         table[0][j].substitution = 0;
     }
+    maxCell = &table[0][0];
 
     for(i = 1; i < rows; i++)
     {
@@ -46,25 +47,28 @@ int localAlign(char *string1, char *string2)
             table[i][j].deletion = tempDel;
             table[i][j].substitution = tempSub;
             table[i][j].score = MaxLocal(tempInsert, tempDel, tempSub);
-            if(table[i][j].score == 0)
-            {
-                if(table[i][j-1].score > maxCell->score)
+        
+                if(table[i][j].score == 0)
                 {
-                    maxCell = &table[i][j-1];
-                    maxI = i;
-                    maxJ = j-1;
-                }
-                if(table[i-1][j].score > maxCell -> score){
-                    maxCell = &table[i-1][j];
-                    maxI = i-1;
-                    maxJ = j;
-                }
-                if(table[i-1][j-1].score > maxCell ->score){
-                    maxCell = &table[i-1][j-1];
-                    maxI = i-1;
-                    maxJ = j-1;
-                }
+                    if(table[i][j-1].score > maxCell->score)
+                    {
+                        maxCell = &table[i][j-1];
+                        maxI = i;
+                        maxJ = j-1;
+                    }
+                    if(table[i-1][j].score > maxCell -> score){
+                        maxCell = &table[i-1][j];
+                        maxI = i-1;
+                        maxJ = j;
+                    }
+                    if(table[i-1][j-1].score > maxCell ->score){
+                        maxCell = &table[i-1][j-1];
+                        maxI = i-1;
+                        maxJ = j-1;
+                    }
             }
+            
+
         }
     }
 
