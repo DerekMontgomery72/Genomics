@@ -47,7 +47,7 @@ int localAlign(char *string1, char *string2)
             table[i][j].deletion = tempDel;
             table[i][j].substitution = tempSub;
             table[i][j].score = MaxLocal(tempInsert, tempDel, tempSub);
-            
+            printf("[%d][%d] Score: %d", table[i][j].score);
         
                 if(table[i][j].score == 0)
                 {
