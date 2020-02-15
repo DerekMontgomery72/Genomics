@@ -378,10 +378,10 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
 
 char *insertGap(char *str, int index, int gapLen) // string has memory available allocated in outer function
 {
-    char insert = '-'; // character to be inserted
+    char insert = '-', *dest; // character to be inserted
     int sourceLen = strlen(str), i;
-    char *strEndBuf = (char *)malloc(sizeof(char) * (sourceLen - index));// buffer to hold end of string
-    char *dest = str + index - 1;
+    char *strEndBuf = (char *)malloc(sizeof(char) * (sourceLen));// buffer to hold end of string
+    dest = str + index - 1;
     char *buf = (char *)malloc(sizeof(char) *strlen(str)); // buffer to hold built string
     strcpy(strEndBuf,dest);
     strncpy(buf,str,index); // move first part of string to buf
