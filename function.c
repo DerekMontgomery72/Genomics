@@ -399,17 +399,17 @@ char *insertGap(char *str, int index, int gapLen) // string has memory available
  
 int fileProcess(FILE *fp, int size)
 {
-    char *s1, *s2, *file, buf[1024];
+    char st1[1024], st2[1024], *file, buf[1024], *s1 = st1,*s2 = st2 ;
     char *cp, *temp;
     int ch, s1Size = 1024, s2Size = 1024, s1Read = 0;
-    s1 = (char *)malloc(sizeof(char) *1024); // give initial input of size 1024
-    s2 = (char *)malloc(sizeof(char) *1024);
+
     strcpy(s1,""); // set Empty string for s1 and s2
     strcpy(s2,""); 
 
     size_t len = 0;
     file = realloc(NULL, sizeof(char) *size); //Allocate enough memory to hold flie
     while(fgets(buf, 1024, fp) != NULL){
+        printf("buf %s\n",buf);
         if(buf[0] == '>'){
             //Name
             cp = buf + 1;
@@ -458,8 +458,11 @@ int fileProcess(FILE *fp, int size)
         }
 
     }
+    
     str1 = s1;
     str2 = s2;
+    printf("str1 %s\n", str1);
+    printf("str2: %s\n", str2);
     return 0;
     
 }
