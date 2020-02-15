@@ -6,7 +6,7 @@ char *TestString2 = "ACATGCGACACTACTCCGATACCCCGTAACCGATAACGATACAGAGACCTCGTACGCTT
 
 int main(int argc, char **argv)
 {
-    printf("FILE: %d\n", argv[0]);
+    printf("FILE: %s\n", argv[0]);
     FILE *in;
     in = fopen(argv[0], "r");
     if(in == NULL){
@@ -16,7 +16,7 @@ int main(int argc, char **argv)
     // Get file size
     fseek(in,0L,SEEK_END);
     long int res = ftell(in);
-    printf("Input file size in bytes %d\n", res);
+    printf("Input file size in bytes %ld\n", res);
     fclose(in);
 
     in = fopen(argv[0], "r");

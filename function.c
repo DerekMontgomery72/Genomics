@@ -235,7 +235,7 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
     char *alignmentBottom = (char*)malloc(len);
     strcpy(alignmentTop,string1);
     strcpy(alignmentBottom,string2);
-    printf("Sequence 1 = %s, length\n", s1Name, str1Len);
+    printf("Sequence 1 = %s, length %d\n", s1Name, str1Len);
     printf("Sequence 2: %s, length %d\n",s2Name, str2Len);
     i = endI;
     j = endJ;
@@ -363,11 +363,11 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
     } //end WHile loop
     int endLen = strlen(alignmentTop);
 
-    double Identities = 0.0, gaps = 0.0;
+    double Identities = 0.0, gapRatio = 0.0;
     Identities = (matches / endLen) * 100;
-    gaps = (gaps / endLen) * 100;
+    gapRatio = (gapRatio / endLen) * 100;
     printf("Optimal Score: %d, matches: %d, mismatches: %d, gaps: %d, gapStarts: %d\n", table[endI][endJ].score,matches, mismatches,gaps,gapsStart);
-
+    printf("Match Ratio:(%d/%d) %f%%, Gap Ratio (%d/%d) %f%%\n",gaps, endLen,Identities,gaps, endLen, gapRatio);
 
     printf("%s\n",alignmentTop);
     printf("%s\n",alignmentBottom);
@@ -400,9 +400,9 @@ char *insertGap(char *str, int index, int gapLen) // string has memory available
 int fileProcess(FILE *fp, size_t size)
 {
     char *s1, *s2, *s1Name, *s2Name, *file,
-         buf[1024], s1Read = 0, s1Size = 1024, s2Size = 1024 ;
+         buf[1024];
     char *cp, *temp;
-    int ch;
+    int ch, s1Size = 1024, s2Size = 1024, s1Read = 0;
     s1 = (char *)malloc(sizeof(char) *1024); // give initial input of size 1024
     s2 = (char *)malloc(sizeof(char) *1024);
     strcpy(s1,""); // set Empty string for s1 and s2
