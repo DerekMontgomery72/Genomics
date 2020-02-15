@@ -54,8 +54,7 @@ int main(int argc, char **argv)
     printf("Local\n");
     strcpy(s1Temp, str1);
     strcpy(s2Temp, str2);
-    printf("%s\n", s2Temp);
-    localAlign(s1Temp, s2Temp);
+    localAlign(str1, str2);
     printf("End\n");
     return 0;
 

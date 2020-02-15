@@ -7,7 +7,7 @@ int localAlign(char *string1, char *string2)
     int rows = strlen(string1), columns =strlen(string2), i, j;
     int tempInsert = 0, tempDel = 0, tempSub = 0;
     //Allocate Table
-    int len = sizeof(DPCELL *) *rows + sizeof(DPCELL) * columns * rows;
+    int len = sizeof(DPCELL*) * rows + (sizeof(DPCELL) * columns * rows);
     DPCELL **table = (DPCELL**)malloc(len);
     DPCELL *ptr = (DPCELL *)(table + rows);
     int maxI = 0, maxJ = 0;
