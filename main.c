@@ -58,12 +58,8 @@ int globalAlign(char *string1, char *string2)
             table[i][j].deletion = tempDel;
             table[i][j].substitution = tempSub;
             table[i][j].score = Max(tempInsert, tempDel, tempSub);
-            printf("[%d][%d]: sub: %d, del: %d, Insert: %d, Score: %d\n ",i,j, tempSub, tempDel, tempInsert, table[i][j].score);
         }
-        printf("\n");
     }
-
-    printf("Maximum Global Alignment Score: %d\n", table[i -1][j -1].score);
 
     char *aling = walkBack(table,(i-1),(j-1),string1,string2);
 }
@@ -308,15 +304,20 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
 
 char *insertGap(char *str, int index) // string has memory available allocated in outer function
 {
-    char *strEnd = str + index;
-    char insert = "-";
-    char *strTemp = (char*)malloc(sizeof(char) * (strlen(str) - index)); //Create string spacce for back portion of string;
-    char *buf = (char *)malloc(sizeof(char) *strlen(str));
-    strncpy(buf,str,index);
-    index += strlen(buf);
-    strcpy(buf + index, insert);
-    index += strlen(insert);
-    strcpy(buf+index, str+index);
-    return buf;
+    char insert = '-'; // character to be inserted
+    int sourceLen = strlen(str);
+    char *strEndBuf = (char *)mall(sizeof(char) * (sourceLen - index));// buffer to hold end of string
+    char *dest = str + index;
+    char *buf = (char *)malloc(sizeof(char) *strlen(str)); // buffer to hold built string
+    strcpy(strEndBuf,dest);
+    strncpy(buf,str,index); // move first part of string to buf
+    strncat(buf,&insert, 1);// insert '-', now not null terminated string
+    buf[index + 1] = '\0';
+    strcat(buf, strEndBuf);
+
+
+    strcpy(str, buf);
+    printf("%s\n",str);
+    return str;
 
 }
