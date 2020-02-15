@@ -427,6 +427,7 @@ int fileProcess(FILE *fp, int size)
         }
         else
         {
+            buf[strlen(buf) -2] = '\0';
             if(s1Read == 0){
                 if(strlen(s1) + strlen(buf) > s1Size)
                 {
