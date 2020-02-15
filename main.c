@@ -49,6 +49,8 @@ int main(int argc, char **argv)
     printf("Scores: \t match: %d, mismatch: %d, h: %d, g: %d \n", match, mismatch, gapOpen, gapCont);
     printf("Global\n");
     globalAlign(s1Temp, s2Temp);
+    fseek(in,0,SEEK_SET);
+    fileProcess(in,res);
     printf("Local\n");
     strcpy(s1Temp, str1);
     strcpy(s2Temp, str2);
