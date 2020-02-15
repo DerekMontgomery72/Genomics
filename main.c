@@ -307,10 +307,10 @@ char *insertGap(char *str, int index) // string has memory available allocated i
     char insert = '-'; // character to be inserted
     int sourceLen = strlen(str);
     char *strEndBuf = (char *)malloc(sizeof(char) * (sourceLen - index));// buffer to hold end of string
-    char *dest = str + index + 1;
+    char *dest = str + index;
     char *buf = (char *)malloc(sizeof(char) *strlen(str)); // buffer to hold built string
     strcpy(strEndBuf,dest);
-    strncpy(buf,str,index); // move first part of string to buf
+    strncpy(buf,str,index -1); // move first part of string to buf
     strncat(buf,&insert, 1);// insert '-', now not null terminated string
     buf[index + 1] = '\0';
     strcat(buf, strEndBuf);
