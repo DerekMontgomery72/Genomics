@@ -8,7 +8,7 @@ int localAlign(char *string1, char *string2)
     int tempInsert = 0, tempDel = 0, tempSub = 0;
     //Allocate Table
     int len = sizeof(DPCELL *) *rows + sizeof(DPCELL) * columns * rows;
-    DPCELL **table = (DPCELL**) malloc(len);
+    DPCELL **table = (DPCELL**)malloc(len);
     DPCELL *ptr = (DPCELL *)(table + rows);
     DPCELL *maxCell = NULL;
     int maxI, maxJ;
@@ -69,6 +69,7 @@ int localAlign(char *string1, char *string2)
     }
 
     char *align = walkBack(table,(maxI),(maxJ),string1,string2);
+    free(table);
 
 }
 
@@ -118,7 +119,8 @@ int globalAlign(char *string1, char *string2)
         }
     }
 
-    char *aling = walkBack(table,(i-1),(j-1),string1,string2);
+    char *align = walkBack(table,(i-1),(j-1),string1,string2);
+    free(table);
 }
 
 int maxInsertion(DPCELL **table, int i, int j)
