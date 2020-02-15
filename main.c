@@ -13,6 +13,7 @@ int main(int argc, char **argv)
     }
 
     FILE *in;
+    
     in = fopen(argv[1], "r");
     if(in == NULL){
         printf("File not Found\n");
@@ -21,10 +22,9 @@ int main(int argc, char **argv)
     // Get file size
     fseek(in,0L,SEEK_END);
     int res = ftell(in);
-    printf("Input file size in bytes %ld\n", res);
-    fclose(in);
+    printf("Input file size in bytes %d\n", res);
+    fseek(in,0,SEEK_SET);
 
-    in = fopen(argv[1], "r");
     fileProcess(in, res);
 
     strcpy(s1Name, "");
@@ -36,9 +36,9 @@ int main(int argc, char **argv)
     gapOpen = -5;
     printf("Scores: \t match: %d, mismatch: %d, h: %d, g: %d \n", match, mismatch, gapOpen, gapCont);
     printf("Global\n");
-    globalAlign(TestString1, TestString2);
+    globalAlign(str1, str2);
     printf("Local\n");
-    localAlign(TestString1, TestString2);
+    localAlign(str1, str2);
     printf("End\n");
     return 0;
 

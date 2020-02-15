@@ -24,7 +24,7 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
 char *insertGap(char *str, int index, int gapLen);
 int MaxLocal(int s1, int s2, int s3);
 int localAlign(char *string1, char *string2);
-int fileProcess(FILE *fp, size_t size);
+int fileProcess(FILE *fp, int size);
 
 
 

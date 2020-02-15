@@ -397,7 +397,7 @@ char *insertGap(char *str, int index, int gapLen) // string has memory available
 
 }
 
-int fileProcess(FILE *fp, size_t size)
+int fileProcess(FILE *fp, int size)
 {
     char *s1, *s2, *s1Name, *s2Name, *file, buf[1024];
     char *cp, *temp;
