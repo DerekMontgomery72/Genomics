@@ -366,7 +366,7 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
 
     double Identities = 0.0, gapRatio = 0.0;
     Identities = ((double)matches / (double)endLen) * 100;
-    gapRatio = ((double)gapRatio / (double)endLen) * 100;
+    gapRatio = ((double)gaps / (double)endLen) * 100;
     printf("Optimal Score: %d, matches: %d, mismatches: %d, gaps: %d, gapStarts: %d\n", table[endI][endJ].score,matches, mismatches,gaps,gapsStart);
     printf("Match Ratio:(%d/%d) %f%%, Gap Ratio (%d/%d) %f%%\n",gaps, endLen,Identities,gaps, endLen, gapRatio);
 
