@@ -166,7 +166,7 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
     //Maximum Length of Alignment = I*J
     char temp = '-';
     char *cp = &temp;
-    int i, j;
+    int i, j, bottomGapLen = 0, topGapLen = 0;
     int len = (endI + endJ) * sizeof(char);
     int matches = 0, mismatches = 0, del = 0, insert = 0, gaps = 0, gapsStart = 0;
     int OptScore = table[endI][endJ].score;
@@ -185,12 +185,14 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
                 if(table[i][j-1].score == (OptScore - gapCont)) //check Deletion Continuing gap
                 {
                     gaps = gaps + 1;
+                    bottomGapLen = bottomGapLen + 1;
                     OptScore = OptScore - gapCont;
                     //Insert gap into bottom string
                 }
                 else if(table[i][j-1].score == (OptScore - (gapCont + gapOpen)))
                 {
                     gaps = gaps +1;
+                    bottomGapLen = bottomGapLen + 1;
                     gapsStart = gapsStart + 1;
 
                 }
@@ -199,7 +201,8 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
                     printf("Error Scores on table don't match possible movements\n"); 
                     break;
                 }
-                alignmentBottom = insertGap(alignmentBottom,j);
+                alignmentBottom = insertGap(alignmentBottom,j, bottomGapLen);
+                bottomGapLen = 0;
                 j = j-1;
             }
             if(j == 0)//At top row -- can only to insertion until end
@@ -207,6 +210,7 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
                 if(table[i-1][j].score == (OptScore - gapCont)) //check insertion Continuing gap
                 {
                     gaps = gaps + 1;
+                    topGapLen = topGapLen + 1;
                     OptScore = OptScore - gapCont;
                     //Insert gap into bottom string
                 }
@@ -214,6 +218,7 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
                 {
                     gaps = gaps +1;
                     gapsStart = gapsStart + 1;
+                    topGapLen = topGapLen + 1;
 
                 }
                 else{
@@ -222,6 +227,7 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
                     break;
                 }
                 alignmentTop = insertGap(alignmentTop, i);
+                topGapLen = 0;
                 i = i-1;
             }
         }
@@ -232,8 +238,8 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
                 if((OptScore - gapCont) == table[i][j-1].insertion)
                 {
                     gaps = gaps + 1;
-                    OptScore = table[i][j-1].score;
-                    alignmentTop = insertGap(alignmentTop, i);
+                    topGapLen++;
+                    OptScore = table[i][j-1].score;                    
                     i = i-1;
                     continue;
                 }
@@ -241,8 +247,10 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
                 {
                     gapsStart = gapsStart + 1;
                     gaps = gaps + 1;
+                    topGapLen++;
                     OptScore = table[i][j-1].score;
-                    alignmentTop = insertGap(alignmentTop, i);
+                    alignmentTop = insertGap(alignmentTop, i, topGapLen);
+                    topGapLen = 0;
                     j = j-1;
                     continue;
                 }
@@ -253,18 +261,20 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
                 if((OptScore - gapCont) == table[i-1][j].deletion)
                 {
                     gaps = gaps + 1;
+                    bottomGapLen++;
                     OptScore = table[i-1][j].score;
                     i = i-1;
-                    alignmentBottom = insertGap(alignmentBottom, i);
                     continue;
                 }
                 else if((OptScore - (gapOpen + gapCont) == table[i-1][j].substitution) || ((OptScore -(gapOpen + gapCont)) == table[i -1][j].insertion))
                 {
                     gapsStart = gapsStart + 1;
                     gaps = gaps + 1;
+                    bottomGapLen++;
                     OptScore = table[i-1][j].score;
                     i = i-1;
-                    alignmentBottom = insertGap(alignmentBottom, i);
+                    alignmentBottom = insertGap(alignmentBottom, i, bottomGapLen);
+                    bottomGapLen = 0;
                     continue;
 
                 }
@@ -302,17 +312,19 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
 
 }
 
-char *insertGap(char *str, int index) // string has memory available allocated in outer function
+char *insertGapsStart(char *str, int index, int gapLen) // string has memory available allocated in outer function
 {
     char insert = '-'; // character to be inserted
-    int sourceLen = strlen(str);
+    int sourceLen = strlen(str), i;
     char *strEndBuf = (char *)malloc(sizeof(char) * (sourceLen - index));// buffer to hold end of string
     char *dest = str + index - 1;
     char *buf = (char *)malloc(sizeof(char) *strlen(str)); // buffer to hold built string
     strcpy(strEndBuf,dest);
     strncpy(buf,str,index); // move first part of string to buf
-    buf[index -1] = '-';// insert '-', now not null terminated string
-    buf[index] = '\0';
+    for(i = 0; i < gapLen; i++){
+        buf[index + i] = '-';
+    }
+    buf[(index + i)] = '\0';
     printf("buf front: %s\n buf end: %s\n",buf, strEndBuf);
     strcat(buf, strEndBuf);
 
