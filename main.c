@@ -313,6 +313,7 @@ char *insertGap(char *str, int index) // string has memory available allocated i
     strncpy(buf,str,index -1); // move first part of string to buf
     strncat(buf,&insert, 1);// insert '-', now not null terminated string
     buf[index + 1] = '\0';
+    printf("buf front: %s\n buf end: %s\n",buf, strEndBuf);
     strcat(buf, strEndBuf);
 
 
