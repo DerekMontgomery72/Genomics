@@ -12,8 +12,8 @@ int main(int argc, char **argv)
     gapOpen = -5;
 
     printf("Run Global Align\n");
-    globalAlign(TestString1, TestString2);
+    //globalAlign(TestString1, TestString2);
     localAlign(TestString1, TestString2);
-    
+
 }
 

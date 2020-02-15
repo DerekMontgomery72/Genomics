@@ -75,7 +75,6 @@ int localAlign(char *string1, char *string2)
 
 int globalAlign(char *string1, char *string2)
 {
-    char c;
     int rows = strlen(string1), columns =strlen(string2), i, j;
     int tempInsert = 0, tempDel = 0, tempSub = 0;
     //Allocate Table
@@ -399,7 +398,6 @@ char *insertGap(char *str, int index, int gapLen) // string has memory available
 
 
     strcpy(str, buf);
-    printf("%s\n",str);
     return str;
 
 }
