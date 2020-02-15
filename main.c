@@ -297,7 +297,7 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
 
     } //end WHile loop
 
-    printf("Score: %d, matches: %d, mismatches: %d, gaps: %d, gapStarts: %d ", table[endI][endJ].score,matches, mismatches,gaps,gapsStart);
+    printf("Score: %d, matches: %d, mismatches: %d, gaps: %d, gapStarts: %d\n ", table[endI][endJ].score,matches, mismatches,gaps,gapsStart);
 
     printf("%s\n",alignmentTop);
     printf("%s\n",alignmentBottom);
@@ -309,13 +309,14 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
 char *insertGap(char *str, int index) // string has memory available allocated in outer function
 {
     char *strEnd = str + index;
+    char insert = "-";
     char *strTemp = (char*)malloc(sizeof(char) * (strlen(str) - index)); //Create string spacce for back portion of string;
-    strcpy(strTemp, strEnd);
-        
-    str[index] = '-';
-    str[index+1] = '\0'; // null terminate after - so strcat can be used
-
-    strcat(str,strEnd);
-    return str;
+    char *buf = (char *)malloc(sizeof(char) *strlen(str));
+    strncpy(buf,str,index);
+    index += strlen(buf);
+    strcpy(buf + index, insert);
+    index += strlen(insert);
+    strcpy(buf+index, str+index);
+    return buf;
 
 }
