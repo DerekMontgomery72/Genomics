@@ -71,7 +71,7 @@ int localAlign(char *string1, char *string2)
 
         }
     }
-
+    printf("MaxScore: %d\n", maxCell->score);
     char *align = walkBack(table,(maxI),(maxJ),string1,string2);
     free(table);
 
