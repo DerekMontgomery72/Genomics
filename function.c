@@ -10,8 +10,8 @@ int localAlign(char *string1, char *string2)
     int len = sizeof(DPCELL *) *rows + sizeof(DPCELL) * columns * rows;
     DPCELL **table = (DPCELL**)malloc(len);
     DPCELL *ptr = (DPCELL *)(table + rows);
-    DPCELL *maxCell = NULL;
-    int maxI, maxJ;
+    int maxI = 0, maxJ = 0;
+
     //Set Row pointers
     for(i = 0; i < rows; i++)
     {
@@ -35,8 +35,6 @@ int localAlign(char *string1, char *string2)
         table[0][j].deletion = 0;
         table[0][j].substitution = 0;
     }
-    maxCell = &table[0][0];
-
     for(i = 1; i < rows; i++)
     {
         for(j = 1; j < columns; j++){
@@ -47,15 +45,14 @@ int localAlign(char *string1, char *string2)
             table[i][j].deletion = tempDel;
             table[i][j].substitution = tempSub;
             table[i][j].score = MaxLocal(tempInsert, tempDel, tempSub);
-            if(table[i][j].score > maxCell->score)
+            if(table[i][j].score > table[maxI][maxJ].score)
             {
-                maxCell = &table[i][j];
                 maxI = i;
                 maxJ = j;
             }
         }
     }
-    printf("MaxScore: %d\n", maxCell->score);
+    
     char *align = walkBack(table,(maxI),(maxJ),string1,string2);
     free(table);
 
