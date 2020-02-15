@@ -6,9 +6,14 @@ char *TestString2 = "ACATGCGACACTACTCCGATACCCCGTAACCGATAACGATACAGAGACCTCGTACGCTT
 
 int main(int argc, char **argv)
 {
-    printf("FILE: %s\n", argv[0]);
+    printf("FILE: %s\n", argv[1]);
+    if(argc == 1){
+        printf("No file Given\n");
+        return;
+    }
+
     FILE *in;
-    in = fopen(argv[0], "r");
+    in = fopen(argv[1], "r");
     if(in == NULL){
         printf("File not Found\n");
         return 0;
@@ -19,7 +24,7 @@ int main(int argc, char **argv)
     printf("Input file size in bytes %ld\n", res);
     fclose(in);
 
-    in = fopen(argv[0], "r");
+    in = fopen(argv[1], "r");
     fileProcess(in, (size_t)res);
 
     strcpy(s1Name, "");
