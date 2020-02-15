@@ -18,7 +18,7 @@ int maxDeletion(DPCELL** table, int i, int j);
 int maxInsertion(DPCELL **table, int i, int j);
 int maxSubstitution(DPCELL **table, int i, int j, char ai, char bj);
 char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2);
-char *insertGapsStart(char *str, int index, int gapLen);
+char *insertGap(char *str, int index, int gapLen);
 
 
 

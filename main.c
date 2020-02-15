@@ -312,7 +312,7 @@ char * walkBack(DPCELL **table, int endI, int endJ, char *string1, char *string2
 
 }
 
-char *insertGapsStart(char *str, int index, int gapLen) // string has memory available allocated in outer function
+char *insertGap(char *str, int index, int gapLen) // string has memory available allocated in outer function
 {
     char insert = '-'; // character to be inserted
     int sourceLen = strlen(str), i;
