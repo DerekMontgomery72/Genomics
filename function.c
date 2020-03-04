@@ -1,22 +1,30 @@
 #include "project.h"
-
-
+// local and global alignment should be 55 
 
 int localAlign(char *string1, char *string2)
 {
-    int rows = strlen(string1), columns =strlen(string2), i, j;
+    int rows = strlen(string1 + 1), columns =strlen(string2 + 1), i, j;
     int tempInsert = 0, tempDel = 0, tempSub = 0;
     //Allocate Table
-    int len = sizeof(DPCELL*) * rows + (sizeof(DPCELL) * columns * rows);
-    DPCELL **table = (DPCELL**)malloc(len);
+    // int len = sizeof(DPCELL*) * rows + (sizeof(DPCELL) * columns * rows);
+
+
+    // DPCELL **table = (DPCELL**)malloc(len);
+    
+    DPCELL **table = (DPCELL**)malloc(sizeof(DPCELL *) * rows);
+
+    for(i = 0; i < rows; i++){
+        table[i] = (DPCELL *)malloc(sizeof(DPCELL) * columns);
+    }
+
     DPCELL *ptr = (DPCELL *)(table + rows);
     int maxI = 0, maxJ = 0;
 
     //Set Row pointers
-    for(i = 0; i < rows; i++)
-    {
-        table[i] = (ptr + columns * i);
-    }
+    // for(i = 0; i < rows; i++)
+    // {
+    //     table[i] = (ptr + columns * i);
+    // }
 
     //Initialize Table row 0 scores
     for(i = 0; i < rows; i++)
@@ -63,14 +71,18 @@ int globalAlign(char *string1, char *string2)
     int rows = strlen(string1), columns =strlen(string2), i, j;
     int tempInsert = 0, tempDel = 0, tempSub = 0;
     //Allocate Table
-    int len = sizeof(DPCELL *) *rows + sizeof(DPCELL) * columns * rows;
-    DPCELL **table = (DPCELL**) malloc(len);
-    DPCELL *ptr = (DPCELL *)(table + rows);
-    //Set Row pointers
-    for(i = 0; i < rows; i++)
-    {
-        table[i] = (ptr + columns * i);
+    // int len = sizeof(DPCELL *) *rows + sizeof(DPCELL) * columns * rows;
+    DPCELL **table = (DPCELL**)malloc(sizeof(DPCELL *) * rows);
+
+    for(i = 0; i < rows; i++){
+        table[i] = (DPCELL *)malloc(sizeof(DPCELL) * columns);
     }
+    //Set Row pointers
+
+    // for(i = 0; i < rows; i++)
+    // {
+    //     table[i] = (ptr + columns * i);
+    // }
 
     //Initialize Table row 0 scores
     for(i = 0; i < rows; i++)
@@ -397,7 +409,7 @@ char *insertGap(char *str, int index, int gapLen) // string has memory available
  
 int fileProcess(FILE *fp, int size)
 {
-    char st1[1024], st2[1024], *file, buf[1024], *s1 = st1,*s2 = st2 ;
+    char st1[5000], st2[5000], *file, buf[5000], *s1 = st1,*s2 = st2 ;
     char *cp, *temp;
     int ch, s1Size = 1024, s2Size = 1024, s1Read = 0;
 
