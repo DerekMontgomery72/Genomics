@@ -1,11 +1,23 @@
 // Project2_DerekMontgomery2.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
+#include "AppWrapper.h";
 
-#include <iostream>
 
-int main()
+int main(int argc, char* argv[])
 {
-    std::cout << "Hello World!\n";
+    if (argc > 1)
+    {
+        AppWrapper app = AppWrapper(argv[1], argv[2]);
+        //app.testInputs();
+        app.runApp();
+    }
+    else
+    {
+        AppWrapper app = AppWrapper();
+        //app.testInputs();
+        app.runApp();
+    }
+
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

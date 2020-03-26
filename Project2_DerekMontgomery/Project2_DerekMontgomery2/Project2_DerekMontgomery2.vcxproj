@@ -147,7 +147,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="AppWrapper.cpp" />
     <ClCompile Include="Project2_DerekMontgomery2.cpp" />
+    <ClCompile Include="SuffixNode.cpp" />
+    <ClCompile Include="SuffixTree.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="AppWrapper.h" />
+    <ClInclude Include="SuffixNode.h" />
+    <ClInclude Include="SuffixTree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
