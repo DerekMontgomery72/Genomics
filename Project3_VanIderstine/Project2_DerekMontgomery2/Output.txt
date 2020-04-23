@@ -1,0 +1,2 @@
+Original String Length: 29883
+Total Number of Nodes: 108731 Number of Leafs: 59774 Number of internal nodes: 48957

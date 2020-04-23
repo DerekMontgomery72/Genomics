@@ -1,0 +1,31 @@
+﻿  AppWrapper.cpp
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\AppWrapper.cpp(16,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\AppWrapper.cpp(32,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\AppWrapper.cpp(47,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\AppWrapper.cpp(63,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\AppWrapper.cpp(102,16): warning C4834: discarding return value of function with 'nodiscard' attribute
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\AppWrapper.cpp(103,25): warning C4834: discarding return value of function with 'nodiscard' attribute
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\AppWrapper.cpp(104,17): warning C4834: discarding return value of function with 'nodiscard' attribute
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\AppWrapper.cpp(105,26): warning C4834: discarding return value of function with 'nodiscard' attribute
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\AppWrapper.cpp(109,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\AppWrapper.cpp(124,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\AppWrapper.cpp(138,22): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\AppWrapper.cpp(153,23): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\AppWrapper.cpp(193,20): warning C4018: '<': signed/unsigned mismatch
+  Project2_DerekMontgomery2.cpp
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\Project2_DerekMontgomery2.cpp(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  SuffixNode.cpp
+  SuffixTree.cpp
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\SuffixTree.cpp(32,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\SuffixTree.cpp(39,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\SuffixTree.cpp(85,16): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\SuffixTree.cpp(92,19): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\SuffixTree.cpp(213,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\SuffixTree.cpp(519,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\SuffixTree.cpp(527,21): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\SuffixTree.cpp(556,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\SuffixTree.cpp(581,20): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\SuffixTree.cpp(548,23): warning C4101: 'children2': unreferenced local variable
+  Generating Code...
+C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Project2_DerekMontgomery2\SuffixTree.cpp(589): warning C4715: 'SuffixTree::findFingerprint': not all control paths return a value
+  Project2_DerekMontgomery2.vcxproj -> C:\Users\Derek\Documents\CS471\Genomics\Project3_VanIderstine\Debug\Project2_DerekMontgomery2.exe

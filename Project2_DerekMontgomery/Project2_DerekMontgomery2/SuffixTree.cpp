@@ -421,7 +421,10 @@ void SuffixTree::DFSHelper(SuffixNode* t, int *maxRepeatLength, int *maxRepeatSt
 
 void SuffixTree::BWT() 
 {
-	cout << "Total Number of Nodes: " << this->numNodes << " Number of Leafs: " << this->numLeafs << " Number of internal nodes: " << (this->numNodes - this->numLeafs) << endl;
+	ofstream out;
+	out.open("Output.txt");
+	out << "Original String Length: " << strlen(this->strFrontPtr) << endl;
+	out << "Total Number of Nodes: " << this->numNodes << " Number of Leafs: " << this->numLeafs << " Number of internal nodes: " << (this->numNodes - this->numLeafs) << endl;
 	ofstream outfile;
 	outfile.open("BWT.txt");
 
