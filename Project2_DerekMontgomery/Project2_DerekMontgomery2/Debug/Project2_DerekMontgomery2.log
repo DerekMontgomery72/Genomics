@@ -1,4 +1,5 @@
-﻿  AppWrapper.cpp
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(459,5): warning MSB8028: The intermediate directory (Debug\) contains files shared from another project (Project2_DerekMontgomery2.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  AppWrapper.cpp
 C:\Users\Derek\Documents\CS471\Genomics\Project2_DerekMontgomery\Project2_DerekMontgomery2\AppWrapper.cpp(14,22): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Derek\Documents\CS471\Genomics\Project2_DerekMontgomery\Project2_DerekMontgomery2\AppWrapper.cpp(30,23): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Derek\Documents\CS471\Genomics\Project2_DerekMontgomery\Project2_DerekMontgomery2\AppWrapper.cpp(66,22): warning C4018: '<': signed/unsigned mismatch
@@ -6,9 +7,10 @@ C:\Users\Derek\Documents\CS471\Genomics\Project2_DerekMontgomery\Project2_DerekM
 C:\Users\Derek\Documents\CS471\Genomics\Project2_DerekMontgomery\Project2_DerekMontgomery2\AppWrapper.cpp(121,20): warning C4018: '<': signed/unsigned mismatch
   Project2_DerekMontgomery2.cpp
 C:\Users\Derek\Documents\CS471\Genomics\Project2_DerekMontgomery\Project2_DerekMontgomery2\Project2_DerekMontgomery2.cpp(3,10): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+  SuffixNode.cpp
   SuffixTree.cpp
 C:\Users\Derek\Documents\CS471\Genomics\Project2_DerekMontgomery\Project2_DerekMontgomery2\SuffixTree.cpp(63,16): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Derek\Documents\CS471\Genomics\Project2_DerekMontgomery\Project2_DerekMontgomery2\SuffixTree.cpp(70,19): warning C4018: '<': signed/unsigned mismatch
 C:\Users\Derek\Documents\CS471\Genomics\Project2_DerekMontgomery\Project2_DerekMontgomery2\SuffixTree.cpp(187,20): warning C4018: '<': signed/unsigned mismatch
   Generating Code...
-  Project2_DerekMontgomery2.vcxproj -> C:\Users\Derek\Documents\CS471\Genomics\Project2_DerekMontgomery\Debug\Project2_DerekMontgomery2.exe
+  Project2_DerekMontgomery2.vcxproj -> C:\Users\Derek\Documents\CS471\Genomics\Project2_DerekMontgomery\Debug\Project3.exe
