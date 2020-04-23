@@ -1,0 +1,5 @@
+﻿  SuffixTree.cpp
+C:\Users\Derek\Documents\CS471\Genomics\Project2_DerekMontgomery\Project2_DerekMontgomery2\SuffixTree.cpp(63,16): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\Documents\CS471\Genomics\Project2_DerekMontgomery\Project2_DerekMontgomery2\SuffixTree.cpp(70,19): warning C4018: '<': signed/unsigned mismatch
+C:\Users\Derek\Documents\CS471\Genomics\Project2_DerekMontgomery\Project2_DerekMontgomery2\SuffixTree.cpp(187,20): warning C4018: '<': signed/unsigned mismatch
+  Project2_DerekMontgomery2.vcxproj -> C:\Users\Derek\Documents\CS471\Genomics\Project2_DerekMontgomery\Debug\Project2_DerekMontgomery2.exe
